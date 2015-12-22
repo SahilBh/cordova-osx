@@ -113,7 +113,7 @@
 
     // we're just going to assume the webScriptObject passed in is an NSArray
     NSArray* arguments = [self convertWebScriptObjectToNSArray:webScriptObject];
-
+    
     CDVInvokedUrlCommand* command = [[CDVInvokedUrlCommand alloc] initWithArguments:arguments callbackId:callbackId className:service methodName:action];
 
     if ((command.className == nil) || (command.methodName == nil)) {
