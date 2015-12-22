@@ -18,6 +18,7 @@
  */
 
 #import <WebKit/WebKit.h>
+#import <JavascriptCore/JavascriptCore.h>
 #include <objc/message.h>
 
 #import "CDVBridge.h"
@@ -112,8 +113,8 @@
     // between iOS and OS X. Also we are going async as well.
 
     // we're just going to assume the webScriptObject passed in is an NSArray
-    NSArray* arguments = [self convertWebScriptObjectToNSArray:webScriptObject];
-
+     NSArray* arguments = [[webScriptObject JSValue] toArray]; 
+    
     CDVInvokedUrlCommand* command = [[CDVInvokedUrlCommand alloc] initWithArguments:arguments callbackId:callbackId className:service methodName:action];
 
     if ((command.className == nil) || (command.methodName == nil)) {
